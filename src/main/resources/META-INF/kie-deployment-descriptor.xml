@@ -12,7 +12,7 @@
     <work-item-handlers>
         <work-item-handler>
             <resolver>mvel</resolver>
-            <identifier>new org.jbpm.process.workitem.rest.RESTWorkItemHandler(classLoader,"NB_ERROR_FLOW","RETRY")</identifier>
+            <identifier>new org.jbpm.process.workitem.rest.RESTWorkItemHandler(classLoader,"NB_ERROR_RETRY_FLOW","RETRY")</identifier>
             <parameters/>
             <name>Rest</name>
         </work-item-handler>
