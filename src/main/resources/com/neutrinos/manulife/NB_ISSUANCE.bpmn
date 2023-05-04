@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_k66v0OZOEe2Ere1PFalTIA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_Fi8ooOqGEe2i8PBcw_L-ng" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_countItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_methodItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_contentTypeItem" structureRef="String"/>
@@ -95,10 +95,12 @@ obj.put("username",(java.lang.String)kcontext.getVariable("username"));
 kcontext.setVariable("payload",obj.toString());
 
 //Get Process Id
-kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:script>
+kcontext.setVariable("pid",kcontext.getProcessInstance().getId());
+
+System.out.println("cid:"+kcontext.getVariable("cid")+",node:"+kcontext.getNodeInstance().getNodeName());]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:task id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE" drools:taskName="Rest" name="Request Policy Issuance">
-      <bpmn2:documentation id="_k66v0eZOEe2Ere1PFalTIA"><![CDATA[jbpm-workitems-rest/index.html]]></bpmn2:documentation>
+      <bpmn2:documentation id="_Fi9PsOqGEe2i8PBcw_L-ng"><![CDATA[jbpm-workitems-rest/index.html]]></bpmn2:documentation>
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Request Policy Issuance]]></drools:metaValue>
@@ -106,10 +108,13 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[kcontext.setVariable("count","0");]]></drools:script>
         </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("cid:"+kcontext.getVariable("cid")+",node:"+kcontext.getNodeInstance().getNodeName());]]></drools:script>
+        </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_82956BCC-2872-4CB6-81CD-9FC4D4E233BD</bpmn2:incoming>
       <bpmn2:outgoing>_125E5A12-FECF-48E8-9C3A-53D82C37A63A</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_k66v0uZOEe2Ere1PFalTIA">
+      <bpmn2:ioSpecification id="_Fi9PseqGEe2i8PBcw_L-ng">
         <bpmn2:dataInput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentDataInputX" drools:dtype="String" itemSubjectRef="__8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentDataInputXItem" name="ContentData"/>
         <bpmn2:dataInput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentTypeInputX" drools:dtype="String" itemSubjectRef="__8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentTypeInputXItem" name="ContentType"/>
         <bpmn2:dataInput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_HandleResponseErrorsInputX" drools:dtype="String" itemSubjectRef="__8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_HandleResponseErrorsInputXItem" name="HandleResponseErrors"/>
@@ -131,7 +136,7 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         <bpmn2:dataInput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_UsernameInputX" drools:dtype="String" itemSubjectRef="__8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_UsernameInputXItem" name="Username"/>
         <bpmn2:dataInput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
         <bpmn2:dataOutput id="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ResultOutputX" drools:dtype="String" itemSubjectRef="__8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ResultOutputXItem" name="Result"/>
-        <bpmn2:inputSet id="_k66v0-ZOEe2Ere1PFalTIA">
+        <bpmn2:inputSet id="_Fi9PsuqGEe2i8PBcw_L-ng">
           <bpmn2:dataInputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentDataInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentTypeInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_HandleResponseErrorsInputX</bpmn2:dataInputRefs>
@@ -153,50 +158,50 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
           <bpmn2:dataInputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_UsernameInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_TaskNameInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
-        <bpmn2:outputSet id="_k66v1OZOEe2Ere1PFalTIA">
+        <bpmn2:outputSet id="_Fi9Ps-qGEe2i8PBcw_L-ng">
           <bpmn2:dataOutputRefs>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ResultOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_k66v1eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PtOqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>payload</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentDataInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v1uZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PteqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>contentType</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ContentTypeInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v1-ZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PtuqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>isHandleResponseErrors</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_HandleResponseErrorsInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v2OZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9Pt-qGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>method</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_MethodInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v2eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PuOqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>issuePolicyUrl</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_UrlInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v2uZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PueqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>retryCount</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_RetruOnErrorInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v2-ZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PuuqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>count</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_countInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v3OZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9Pu-qGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>cid</bpmn2:sourceRef>
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_cidInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v3eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PvOqGEe2i8PBcw_L-ng">
         <bpmn2:targetRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_TaskNameInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_k66v3uZOEe2Ere1PFalTIA">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_k66v3-ZOEe2Ere1PFalTIA"><![CDATA[Rest]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_k66v4OZOEe2Ere1PFalTIA">_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_TaskNameInputX</bpmn2:to>
+        <bpmn2:assignment id="_Fi9PveqGEe2i8PBcw_L-ng">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_Fi9PvuqGEe2i8PBcw_L-ng"><![CDATA[Rest]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_Fi9Pv-qGEe2i8PBcw_L-ng">_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="_k66v4eZOEe2Ere1PFalTIA">
+      <bpmn2:dataOutputAssociation id="_Fi9PwOqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE_ResultOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>issuePolicyResponse</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
@@ -209,35 +214,38 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Post Signal]]></drools:metaValue>
         </drools:metaData>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("cid:"+kcontext.getVariable("cid")+",node:"+kcontext.getNodeInstance().getNodeName());]]></drools:script>
+        </drools:onExit-script>
         <drools:metaData name="customAbortParent">
           <drools:metaValue><![CDATA[false]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_D66A7D63-769D-4E66-9EC7-A9345B7A72B0</bpmn2:incoming>
       <bpmn2:outgoing>_09EB1696-226E-46BF-8E80-E9DFB44BB170</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_k66v4uZOEe2Ere1PFalTIA">
+      <bpmn2:ioSpecification id="_Fi9PweqGEe2i8PBcw_L-ng">
         <bpmn2:dataInput id="_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_cidInputX" drools:dtype="Integer" itemSubjectRef="__84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_cidInputXItem" name="cid"/>
         <bpmn2:dataInput id="_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_pidInputX" drools:dtype="Integer" itemSubjectRef="__84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_pidInputXItem" name="pid"/>
         <bpmn2:dataInput id="_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputX" drools:dtype="String" itemSubjectRef="__84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputXItem" name="signalName"/>
-        <bpmn2:inputSet id="_k66v4-ZOEe2Ere1PFalTIA">
+        <bpmn2:inputSet id="_Fi9PwuqGEe2i8PBcw_L-ng">
           <bpmn2:dataInputRefs>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_cidInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_pidInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_k66v5OZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9Pw-qGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>cid</bpmn2:sourceRef>
         <bpmn2:targetRef>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_cidInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v5eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PxOqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>pid</bpmn2:sourceRef>
         <bpmn2:targetRef>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_pidInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v5uZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PxeqGEe2i8PBcw_L-ng">
         <bpmn2:targetRef>_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_k66v5-ZOEe2Ere1PFalTIA">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_k66v6OZOEe2Ere1PFalTIA"><![CDATA[ISS_SIGNAL]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_k66v6eZOEe2Ere1PFalTIA">_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputX</bpmn2:to>
+        <bpmn2:assignment id="_Fi9PxuqGEe2i8PBcw_L-ng">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_Fi9Px-qGEe2i8PBcw_L-ng"><![CDATA[ISS_SIGNAL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_Fi9PyOqGEe2i8PBcw_L-ng">_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA_signalNameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
     </bpmn2:callActivity>
@@ -246,29 +254,32 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Update Case Status]]></drools:metaValue>
         </drools:metaData>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("cid:"+kcontext.getVariable("cid")+",node:"+kcontext.getNodeInstance().getNodeName());]]></drools:script>
+        </drools:onExit-script>
         <drools:metaData name="customAbortParent">
           <drools:metaValue><![CDATA[false]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_125E5A12-FECF-48E8-9C3A-53D82C37A63A</bpmn2:incoming>
       <bpmn2:outgoing>_D66A7D63-769D-4E66-9EC7-A9345B7A72B0</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_k66v6uZOEe2Ere1PFalTIA">
+      <bpmn2:ioSpecification id="_Fi9PyeqGEe2i8PBcw_L-ng">
         <bpmn2:dataInput id="_54AC0D86-4C50-4A16-BF3F-E25535C3127E_cidInputX" drools:dtype="Integer" itemSubjectRef="__54AC0D86-4C50-4A16-BF3F-E25535C3127E_cidInputXItem" name="cid"/>
         <bpmn2:dataInput id="_54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputX" drools:dtype="String" itemSubjectRef="__54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputXItem" name="status"/>
-        <bpmn2:inputSet id="_k66v6-ZOEe2Ere1PFalTIA">
+        <bpmn2:inputSet id="_Fi9PyuqGEe2i8PBcw_L-ng">
           <bpmn2:dataInputRefs>_54AC0D86-4C50-4A16-BF3F-E25535C3127E_cidInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_k66v7OZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9Py-qGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>cid</bpmn2:sourceRef>
         <bpmn2:targetRef>_54AC0D86-4C50-4A16-BF3F-E25535C3127E_cidInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v7eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9PzOqGEe2i8PBcw_L-ng">
         <bpmn2:targetRef>_54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_k66v7uZOEe2Ere1PFalTIA">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_k66v7-ZOEe2Ere1PFalTIA"><![CDATA[Pending Issuance]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_k66v8OZOEe2Ere1PFalTIA">_54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputX</bpmn2:to>
+        <bpmn2:assignment id="_Fi9PzeqGEe2i8PBcw_L-ng">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_Fi9PzuqGEe2i8PBcw_L-ng"><![CDATA[Pending Issuance]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_Fi9Pz-qGEe2i8PBcw_L-ng">_54AC0D86-4C50-4A16-BF3F-E25535C3127E_statusInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
     </bpmn2:callActivity>
@@ -283,7 +294,7 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
       </bpmn2:extensionElements>
       <bpmn2:incoming>_09EB1696-226E-46BF-8E80-E9DFB44BB170</bpmn2:incoming>
       <bpmn2:outgoing>_FDBFF74D-FC38-4D40-B726-EBFF82B8E969</bpmn2:outgoing>
-      <bpmn2:signalEventDefinition id="_k66v8eZOEe2Ere1PFalTIA" signalRef="_4e3d2720-7794-3128-8304-abd70d191977"/>
+      <bpmn2:signalEventDefinition id="_Fi9P0OqGEe2i8PBcw_L-ng" signalRef="_4e3d2720-7794-3128-8304-abd70d191977"/>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:callActivity id="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC" drools:independent="false" drools:waitForCompletion="true" name="Update Case Status" calledElement="Manulife.NB_CASE_STATUS_UPDATE">
       <bpmn2:extensionElements>
@@ -293,32 +304,35 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[kcontext.setVariable("status","Completed");]]></drools:script>
         </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("cid:"+kcontext.getVariable("cid")+",node:"+kcontext.getNodeInstance().getNodeName());]]></drools:script>
+        </drools:onExit-script>
         <drools:metaData name="customAbortParent">
           <drools:metaValue><![CDATA[false]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_FDBFF74D-FC38-4D40-B726-EBFF82B8E969</bpmn2:incoming>
       <bpmn2:outgoing>_E70138E7-F74A-4F3B-B2BE-19D3C3FAB23F</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_k66v8uZOEe2Ere1PFalTIA">
+      <bpmn2:ioSpecification id="_Fi9P0eqGEe2i8PBcw_L-ng">
         <bpmn2:dataInput id="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_cidInputX" drools:dtype="Integer" itemSubjectRef="__DBC1BFAD-76B8-4410-A1E1-BD45871528BC_cidInputXItem" name="cid"/>
         <bpmn2:dataInput id="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_statusInputX" drools:dtype="String" itemSubjectRef="__DBC1BFAD-76B8-4410-A1E1-BD45871528BC_statusInputXItem" name="status"/>
-        <bpmn2:inputSet id="_k66v8-ZOEe2Ere1PFalTIA">
+        <bpmn2:inputSet id="_Fi9P0uqGEe2i8PBcw_L-ng">
           <bpmn2:dataInputRefs>_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_cidInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_statusInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_k66v9OZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9P0-qGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>cid</bpmn2:sourceRef>
         <bpmn2:targetRef>_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_cidInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_k66v9eZOEe2Ere1PFalTIA">
+      <bpmn2:dataInputAssociation id="_Fi9P1OqGEe2i8PBcw_L-ng">
         <bpmn2:sourceRef>status</bpmn2:sourceRef>
         <bpmn2:targetRef>_DBC1BFAD-76B8-4410-A1E1-BD45871528BC_statusInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
     </bpmn2:callActivity>
   </bpmn2:process>
-  <bpmndi:BPMNDiagram id="_k66v9uZOEe2Ere1PFalTIA">
-    <bpmndi:BPMNPlane id="_k66v9-ZOEe2Ere1PFalTIA" bpmnElement="Manulife.NB_ISSUANCE">
+  <bpmndi:BPMNDiagram id="_Fi9P1eqGEe2i8PBcw_L-ng">
+    <bpmndi:BPMNPlane id="_Fi9P1uqGEe2i8PBcw_L-ng" bpmnElement="Manulife.NB_ISSUANCE">
       <bpmndi:BPMNShape id="shape__DBC1BFAD-76B8-4410-A1E1-BD45871528BC" bpmnElement="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC">
         <dc:Bounds height="101.0" width="153.0" x="1781.0" y="272.0"/>
       </bpmndi:BPMNShape>
@@ -373,12 +387,12 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-  <bpmn2:relationship id="_k66v-OZOEe2Ere1PFalTIA" type="BPSimData">
+  <bpmn2:relationship id="_Fi9P1-qGEe2i8PBcw_L-ng" type="BPSimData">
     <bpmn2:extensionElements>
       <bpsim:BPSimData>
         <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
           <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters"/>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC" id="_k66v-eZOEe2Ere1PFalTIA">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_DBC1BFAD-76B8-4410-A1E1-BD45871528BC" id="_Fi9P2OqGEe2i8PBcw_L-ng">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
@@ -398,34 +412,14 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_0153FB98-72C3-4673-99C1-469C1818ECFA" id="_k66v-uZOEe2Ere1PFalTIA">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_0153FB98-72C3-4673-99C1-469C1818ECFA" id="_Fi9P2eqGEe2i8PBcw_L-ng">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
               </bpsim:ProcessingTime>
             </bpsim:TimeParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_54AC0D86-4C50-4A16-BF3F-E25535C3127E" id="_k66v--ZOEe2Ere1PFalTIA">
-            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
-              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
-                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
-              </bpsim:ProcessingTime>
-            </bpsim:TimeParameters>
-            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
-              <bpsim:Availability xsi:type="bpsim:Parameter">
-                <bpsim:FloatingParameter value="0.0"/>
-              </bpsim:Availability>
-              <bpsim:Quantity xsi:type="bpsim:Parameter">
-                <bpsim:FloatingParameter value="0.0"/>
-              </bpsim:Quantity>
-            </bpsim:ResourceParameters>
-            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
-              <bpsim:UnitCost xsi:type="bpsim:Parameter">
-                <bpsim:FloatingParameter value="0.0"/>
-              </bpsim:UnitCost>
-            </bpsim:CostParameters>
-          </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA" id="_k66v_OZOEe2Ere1PFalTIA">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_54AC0D86-4C50-4A16-BF3F-E25535C3127E" id="_Fi9P2uqGEe2i8PBcw_L-ng">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
@@ -445,7 +439,7 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE" id="_k66v_eZOEe2Ere1PFalTIA">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_84FE83B4-F1F1-4BC8-98CB-E6E8DF120CAA" id="_Fi9P2-qGEe2i8PBcw_L-ng">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
@@ -465,7 +459,27 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_FE75AE55-91EC-4FBA-BB6A-E873DA60AD18" id="_k66v_uZOEe2Ere1PFalTIA">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_8CB8AA04-3DF4-4F76-ACFC-A8181629C9FE" id="_Fi9P3OqGEe2i8PBcw_L-ng">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_FE75AE55-91EC-4FBA-BB6A-E873DA60AD18" id="_Fi9P3eqGEe2i8PBcw_L-ng">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
@@ -488,7 +502,7 @@ kcontext.setVariable("pid",kcontext.getProcessInstance().getId());]]></bpmn2:scr
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_k66v0OZOEe2Ere1PFalTIA</bpmn2:source>
-    <bpmn2:target>_k66v0OZOEe2Ere1PFalTIA</bpmn2:target>
+    <bpmn2:source>_Fi8ooOqGEe2i8PBcw_L-ng</bpmn2:source>
+    <bpmn2:target>_Fi8ooOqGEe2i8PBcw_L-ng</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
