@@ -1,0 +1,190 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mvl-cm-sit-wf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mvl-cm-sit-wf
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: mvl-cm-sit-wf
+    spec:
+      containers:
+      - name: mvl-cm-sit-wf
+        image: docker.neutrinos.co/console-runtime-images/cm-bpm:1.0.52
+        env:
+        - name: AUTO_NBPR_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: AUTO_NBPR_CRON_CONFIG
+        - name: NBPR_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: NBPR_CRON_CONFIG
+        - name: COF_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: COF_CRON_CONFIG
+        - name: AUTO_NBPR_MAX_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: AUTO_NBPR_MAX_FREQUENCY
+        - name: NBPR_MAX_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: NBPR_MAX_FREQUENCY
+        - name: COF_MAX_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: COF_MAX_FREQUENCY
+        - name: AUTO_NBPR_REMINDER_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: AUTO_NBPR_REMINDER_CRON_CONFIG
+        - name: NBPR_REMINDER_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: NBPR_REMINDER_CRON_CONFIG
+        - name: COF_REMINDER_CRON_CONFIG
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: COF_REMINDER_CRON_CONFIG
+        - name: AUTO_NBPR_MAX_REMINDER_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: AUTO_NBPR_MAX_REMINDER_FREQUENCY
+        - name: NBPR_MAX_REMINDER_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: NBPR_MAX_REMINDER_FREQUENCY
+        - name: COF_MAX_REMINDER_FREQUENCY
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: COF_MAX_REMINDER_FREQUENCY
+        - name: BPM_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: BPM_BASE_URL
+        - name: CRON_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CRON_BASE_URL
+        - name: EMAIL_LIST
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: EMAIL_LIST
+        - name: SMS_LIST
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: SMS_LIST
+        - name: JBPM_DB_DRIVER
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: JBPM_DB_DRIVER
+        - name: JBPM_DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: JBPM_DB_HOST
+        - name: JBPM_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: JBPM_DB_NAME
+        - name: JBPM_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: JBPM_DB_USER
+        - name: JBPM_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: JBPM_DB_PASSWORD
+        - name: CM_IN_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_IN_BASE_URL
+        - name: CM_IN_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_IN_CLIENT_ID
+        - name: CM_IN_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_IN_CLIENT_SECRET
+        - name: CM_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_BASE_URL
+        - name: CM_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_CLIENT_ID
+        - name: CM_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: CM_CLIENT_SECRET
+        - name: IDS_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mvl-bpm-secret
+              key: IDS_BASE_URL
+        ports:
+        - containerPort: 8080
+        - containerPort: 8001
+        resources:
+          limits:
+            cpu: 2
+            memory: 4000Mi
+          requests:
+            cpu: 2
+            memory: 4000Mi
+            ephemeral-storage: "10Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mvl-cm-sit-wf
+  name: mvl-cm-sit-wf
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mvl-cm-sit-wf
+  sessionAffinity: None
