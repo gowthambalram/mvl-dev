@@ -11,16 +11,8 @@
     <repository>
       <include>true</include>
       <metadata>
-        <id>jboss-datagrid-repository</id>
-        <url>/opt/jboss/maven/.m2/repository/redhat-datagrid-8.3.1-maven-repository</url>
-        <source>SETTINGS</source>
-      </metadata>
-    </repository>
-    <repository>
-      <include>true</include>
-      <metadata>
-        <id>redhat-ga-repository</id>
-        <url>http://maven.repository.redhat.com/ga/</url>
+        <id>repository</id>
+        <url>/opt/jboss/maven/.m2/repository</url>
         <source>SETTINGS</source>
       </metadata>
     </repository>
@@ -35,8 +27,16 @@
     <repository>
       <include>true</include>
       <metadata>
-        <id>repository</id>
-        <url>/opt/jboss/maven/.m2/repository</url>
+        <id>redhat-ga-repository</id>
+        <url>http://maven.repository.redhat.com/ga/</url>
+        <source>SETTINGS</source>
+      </metadata>
+    </repository>
+    <repository>
+      <include>true</include>
+      <metadata>
+        <id>jboss-datagrid-repository</id>
+        <url>/opt/jboss/maven/.m2/repository/redhat-datagrid-8.3.1-maven-repository</url>
         <source>SETTINGS</source>
       </metadata>
     </repository>
