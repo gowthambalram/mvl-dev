@@ -18,27 +18,10 @@ public class NB_TOKEN_GENERATOR implements java.io.Serializable {
     public NB_TOKEN_GENERATOR() {
     }
 
-public static String getToken(String tokenName) {
-
-		String inClientId = System.getenv("CM_IN_CLIENT_ID");
-		String inClientSecret = System.getenv("CM_IN_CLIENT_SECRET");
-
-		String cmClientId = System.getenv("CM_CLIENT_ID");
-		String cmClientSecret = System.getenv("CM_CLIENT_SECRET");
-
-		String tokenUrl = System.getenv("IDS_BASE_URL") + "token";
-
-		String cmUrlParameters  = "client_secret="+cmClientSecret+"&client_id="+cmClientId+"&grant_type=client_credentials";
-		String inUrlParameters  = "client_secret="+inClientSecret+"&client_id="+inClientId+"&grant_type=client_credentials";
-		
+public static String getToken(String tokenUrl,String urlParameters) {
 		String accessToken="";
-		String urlParameters="";
 		try {
-			if(tokenName.equals("cmToken")) {
-				urlParameters = cmUrlParameters;
-			} else {
-				urlParameters = inUrlParameters;
-			}			
+	    	
 	        StringBuilder result = new StringBuilder();
 	        URL url = new URL(tokenUrl);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -62,12 +45,10 @@ public static String getToken(String tokenName) {
 	                result.append(line);
 	            }
 	            rd.close();
-                accessToken = result.toString();
-	           //String tokenResponse= result.toString();
-	           //System.out.println("token response"+tokenResponse);
-	           // JSONObject obje = new JSONObject(tokenResponse);
-	           // accessToken=(String) obje.get("access_token");
-	           // System.out.println("access_token"+obje.get("access_token"));
+	           String tokenResponse= result.toString();
+	            JSONObject obje = new JSONObject(tokenResponse);
+	            accessToken=(String) obje.get("access_token");
+	            System.out.println(obje.get("access_token"));
 	        }
 	        catch (Exception e) {
 	            return e.getMessage().toString();
